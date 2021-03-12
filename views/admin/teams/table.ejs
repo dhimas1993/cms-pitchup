@@ -1,0 +1,69 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-modal">
+            Add Teams
+        </button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Title</th>
+                        <th>Linkedin URL</th>
+                        <th>Profile photo</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Title</th>
+                        <th>Linkedin URL</th>
+                        <th>Profile photo</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <% for(let i =0; i < teams.length; i++) {%>
+                        <tr class="center">
+                            <td><%= i + 1%></td>
+                            <td><%= teams[i].name %></td>
+                            <td><%= teams[i].title %></td>
+                            <td><%= teams[i].linkedinUrl %></td>
+                            <td>
+                                <img src="http://localhost:5000/<%= teams[i].profilePhoto %>" alt="<%= teams[i].profilePhoto %>" width="100px">
+                            </td>
+                            <td>
+                            <form action="/teams/<%= teams[i].id %>?_method=DELETE" method="POST">
+                                <a  
+                                    href="javascript:void()"
+                                    type="button"
+                                    class="btn btn-warning btn-sm btn-circle button-update"
+                                    data-id="<%= teams[i].id %>"
+                                    data-name="<%= teams[i].name %>"
+                                    data-title="<%= teams[i].title %>"
+                                    data-linkedinurl="<%= teams[i].linkedinUrl %>"
+                                >
+                                    <i class="fas fa-fw fa-edit"></i>
+                                </a>
+                                
+                                <!-- Button trigger modal -->
+                                <button 
+                                    type="submit" 
+                                    href="" 
+                                    class=" btn btn-danger btn-sm btn-circle">
+                                    <i class="fas fa-fw fa-trash"></i>
+                                </button>
+                            </form>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

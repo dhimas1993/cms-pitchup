@@ -1,0 +1,48 @@
+<!-- Modal -->
+<div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="false">&times;</span>
+          </button>
+        </div>
+  
+        <form action="/teams" method="POST"" enctype="multipart/form-data">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input required name='name' type="text" class="form-control" id="exampleFormControlInput" placeholder="Enter Name">
+            </div>
+            <div class="form-group">
+                <label for="name">Title</label>
+                <input required name='title' type="text" class="form-control" id="exampleFormControlInput" placeholder="Enter Name">
+              </div>
+              <div class="form-group">
+                <label for="name">Linkedin Url</label>
+                <input required name='linkedinUrl' type="text" class="form-control" id="exampleFormControlInput" placeholder="Enter Name">
+              </div>
+              <div class="form-group">
+                <label for="name">Profile photo</label>
+                <input name='image' type="file" class="form-control image">
+              </div>
+              <div class="form-group">
+                <label for="name">Pitch</label>
+                  <select name="pitchId" class="custom-select" id="inputGroupSelect03">
+                    <option selected>... Choose ...</option>
+                    <% for(let i = 0; i < pitch.length; i++){ %>
+                        <option value="<%= pitch[i].id %>"><%= pitch[i].name %></option>
+                    <% } %>
+                  </select>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+        
+      </div>
+    </div>
+  </div>

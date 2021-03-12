@@ -1,0 +1,121 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-modal">
+            Add Pitch
+        </button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Logo</th>
+                        <th>Portofolio Logo</th>
+                        <th>Description</th>
+                        <th>Label</th>
+                        <th>Teams</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Logo</th>
+                        <th>Portofolio Logo</th>
+                        <th>Description</th>
+                        <th>Label</th>
+                        <th>Teams</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <% for(let i =0; i < pitch.length; i++) { %>
+                        <% const a = pitch[i].teams %>
+                        <tr class="center">
+                            <td><%= i + 1%></td>
+                            <td><%= pitch[i].name %></td>
+                            <td>
+                                <img src="http://localhost:5000/<%= pitch[i].file %>" alt="no display" width="50px">
+                            </td>
+                            <td>
+                                <% portofolioLogo = pitch[i].portofolioLogo.map(function(elem) { %>
+                                    <img class="m-1" src="http://localhost:5000/<%= elem %>" alt="<%= elem %>" width="120px">
+                                <% }) %>
+                            </td>
+                            <td>
+                                <p style="white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    max-width: 150px;"
+                                >
+                                <%= pitch[i].body %></p>
+                            </td>
+                            <td>
+                                <% label = pitch[i].label.map(function(elem) { %>
+                                    <span class="badge badge-info"><%= elem %></span>
+                                <% }) %>
+                            </td>
+                            <td>
+                                <% teams = pitch[i].teams.map(function(elem) { %>
+                                    <span class="badge badge-info"><%= elem.name %></span>
+                                <% }) %>
+                            </td>
+
+                            <!-- <td><%= pitch[i].teams %></td> -->
+                            <td><%= pitch[i].date.getDay() + "-" + pitch[i].date.getMonth() +"-"+ pitch[i].date.getFullYear()%></td>
+                            <td>
+                                <form action="/pitch/<%= pitch[i].id %>?_method=DELETE" method="POST">
+                                    <a  
+                                        href="javascript:void()"
+                                        type="button"
+                                        class="btn btn-warning btn-sm btn-circle button-update"
+                                        data-id="<%= pitch[i].id %>"
+                                        data-name="<%= pitch[i].name %>"
+                                        data-label="<%= pitch[i].label %>"
+                                        data-body="<%= pitch[i].body %>"
+                                    >
+                                        <i class="fas fa-fw fa-edit"></i>
+                                    </a>
+                                    
+                                    <!-- Button trigger modal -->
+                                    <button 
+                                        class="btn btn-danger btn-sm btn-circle"
+                                        type="submit" >
+                                        <i class="fas fa-fw fa-trash"></i>
+                                    </button>
+                                    <!-- data-toggle="modal" data-target="#exampleModal"> -->
+                                    
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Notification</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure delete this item ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-danger">Yes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

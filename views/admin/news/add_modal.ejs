@@ -1,0 +1,41 @@
+<!-- Modal -->
+<div class="modal fade " id="add-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add News</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="false">&times;</span>
+          </button>
+        </div>
+        <form action="/news" method="POST" enctype="multipart/form-data">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="name">News Title</label>
+              <input required name='title' type="text" class="form-control title" id="title" placeholder="Enter Title Name">
+            </div>
+            <div class="form-group">
+                <label for="name">Company Name</label>
+                <input required name='companyName' type="text" class="form-control compnayName" id="companyName" placeholder="Enter Company Name">
+            </div>
+            <div class="form-group">
+                <label for="name">Company Url</label>
+                <input required name='companyUrl' type="text" class="form-control companyUrl" id="compnayUrl" placeholder="Enter Company Url">
+            </div>
+            <div class="form-group">
+                <label for="name">Company Logo</label>
+                <input required name='image' type="file" class="form-control companyLogo" id="companyLogo" placeholder="Choose Logo Company">
+            </div>
+            <div class="form-group">
+                <label for="name">Headline Picture</label>
+                <input required name='image' type="file" class="form-control headlinePicture" id="headlinePicture" placeholder="Choose Picture Company">
+            </div>
+        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

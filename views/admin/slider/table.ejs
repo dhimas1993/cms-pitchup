@@ -1,0 +1,83 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-modal">
+            Add Slider
+        </button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Picture</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Picture</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <% for(let i =0; i < slider.length; i++) {%>
+                        <tr class="center">
+                            <td><%= i + 1%></td>
+                            <td><%= slider[i].name %></td>
+                            <td>
+                                <img src="http://localhost:5000/<%= slider[i].file %>" alt="<%= slider[i].file %>" width="350px">
+                            </td>
+                            <td>
+                            <form action="/slider/<%= slider[i].id %>?_method=DELETE" method="POST">
+                                <a  
+                                    href="javascript:void()"
+                                    type="button"
+                                    class="btn btn-warning btn-sm btn-circle button-update"
+                                    data-id="<%= slider[i].id %>"
+                                    data-name="<%= slider[i].name %>"
+                                >
+                                    <i class="fas fa-fw fa-edit"></i>
+                                </a>
+                                
+                                <!-- Button trigger modal -->
+                                <button 
+                                    type="button" 
+                                    href="" 
+                                    class=" btn btn-danger btn-sm btn-circle"
+                                    type="button"  data-toggle="modal" data-target="#exampleModal">
+                                    <i class="fas fa-fw fa-trash"></i>
+                                </button>
+                                
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Notification</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure delete this item ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-danger">Yes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

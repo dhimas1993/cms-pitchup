@@ -1,0 +1,63 @@
+<!-- Modal -->
+<div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Admin User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="false">&times;</span>
+                </button>
+            </div>
+    
+            <form action="/admin-user" method="POST" >
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="name">First Name</label>
+                                <input required name='firstName' type="text" class="form-control" id="exampleFormControlInput" placeholder="Enter firstname">
+                            </div>
+                            <div class="col-6">
+                                <label for="name">Last Name</label>
+                                <input required name='lastName' type="text" class="form-control" id="exampleFormControlInput" placeholder="Enter Lastname">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Linkedin Profile</label>
+                        <input required name='linkedinProfile' type="text" class="form-control" id="exampleFormControlInput" placeholder="Linkedin Profile">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Status</label>
+                        <select name="status" class="custom-select" id="inputGroupSelect03">
+                            <option value="">... Choose ...</option>
+                            <option value="active">Active</option>
+                            <option value="not active">Deactive</option>
+                        </select>
+                      </div>
+                    <div class="form-group">
+                        <label for="name">Email</label>
+                        <input required name='email' type="email" class="form-control" id="exampleFormControlInput" placeholder="Enter Email">
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="name">Password</label>
+                                <input required name='password' type="password" class="form-control" id="exampleFormControlInput" placeholder="Enter Password">
+                            </div>
+                            <div class="col-6">
+                                <label for="name">Confirm Password</label>
+                                <input required name='confirmPassword' type="password" class="form-control" id="exampleFormControlInput" placeholder="Confirm Password">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        
+        </div>
+    </div>
+  </div>

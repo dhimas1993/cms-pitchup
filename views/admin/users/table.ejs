@@ -1,0 +1,81 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-modal">
+            Add Admin User
+        </button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Startup</th>
+                        <th>LinkedIn</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>No</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Startup</th>
+                        <th>LinkedIn</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <% for(let i =0; i < users.length; i++) {%>
+                        <tr>
+                            <td><%= i + 1%></td>
+                            <td><%= users[i].firstName %></td>
+                            <td><%= users[i].lastName %></td>
+                            <td><%= users[i].startupName %></td>
+                            <td><%= users[i].linkedinProfile %></td>
+                            <td><%= users[i].email %></td>
+                            <td><%= users[i].role %></td>
+                            <td><%= users[i].status %></td>
+                            <td>
+                            <form action="/admin-user/<%= users[i]._id %>?_method=DELETE" method="POST">
+                                <a  
+                                    href="javascript:void()"
+                                    type="button"
+                                    class="btn btn-warning btn-sm btn-circle button-update"
+                                    data-id="<%= users[i].id %>"
+                                    data-firstname="<%= users[i].firstName %>"
+                                    data-lastname="<%= users[i].lastName %>"
+                                    data-startup="<%= users[i].startupName %>"
+                                    data-linkedinprofile="<%= users[i].linkedinProfile %>"
+                                    data-email="<%= users[i].email %>"
+                                    data-status="<%= users[i].status %>"
+                                >
+                                    <i class="fas fa-fw fa-edit"></i>
+                                </a>
+                                
+                                <button 
+                                    type="submit" 
+                                    href="" 
+                                    class=" btn btn-danger btn-sm btn-circle"
+                                    >
+                                    <i class="fas fa-fw fa-trash"></i>
+                                </button>
+                               
+                            </form>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
