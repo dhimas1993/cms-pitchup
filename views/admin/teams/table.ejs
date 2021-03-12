@@ -35,7 +35,7 @@
                             <td><%= teams[i].title %></td>
                             <td><%= teams[i].linkedinUrl %></td>
                             <td>
-                                <img src="http://localhost:5000/<%= teams[i].profilePhoto %>" alt="<%= teams[i].profilePhoto %>" width="100px">
+                                <img src="https://cms-pitchup.herokuapp.com/<%= teams[i].profilePhoto %>" alt="<%= teams[i].profilePhoto %>" width="100px">
                             </td>
                             <td>
                             <form action="/teams/<%= teams[i].id %>?_method=DELETE" method="POST">

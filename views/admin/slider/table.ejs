@@ -29,7 +29,7 @@
                             <td><%= i + 1%></td>
                             <td><%= slider[i].name %></td>
                             <td>
-                                <img src="http://localhost:5000/<%= slider[i].file %>" alt="<%= slider[i].file %>" width="350px">
+                                <img src="http://cms-pitchup.herokuapp.com/<%= slider[i].file %>" alt="<%= slider[i].file %>" width="350px">
                             </td>
                             <td>
                             <form action="/slider/<%= slider[i].id %>?_method=DELETE" method="POST">

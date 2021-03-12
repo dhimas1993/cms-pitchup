@@ -59,7 +59,7 @@ module.exports = {
                         <h3>Halo ${firstName}</h3>
                         <h3>Silehkan Klik link berikut untuk konfirmasi email anda</h3>
                         </br> 
-                        <a href="http://localhost:3000/confirmationCode/${token}">Click Here !!</a> 
+                        <a href="https://pitchup.herokuapp.com/confirmationCode/${token}">Click Here !!</a> 
                     </div>
                 `
             };

@@ -40,11 +40,11 @@
                             <td><%= i + 1%></td>
                             <td><%= pitch[i].name %></td>
                             <td>
-                                <img src="http://localhost:5000/<%= pitch[i].file %>" alt="no display" width="50px">
+                                <img src="http://cms-pitchup.herokuapp.com/<%= pitch[i].file %>" alt="no display" width="50px">
                             </td>
                             <td>
                                 <% portofolioLogo = pitch[i].portofolioLogo.map(function(elem) { %>
-                                    <img class="m-1" src="http://localhost:5000/<%= elem %>" alt="<%= elem %>" width="120px">
+                                    <img class="m-1" src="http://cms-pitchup.herokuapp.com/<%= elem %>" alt="<%= elem %>" width="120px">
                                 <% }) %>
                             </td>
                             <td>
