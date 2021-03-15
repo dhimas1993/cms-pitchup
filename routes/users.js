@@ -1,9 +1,38 @@
-var express = require('express');
-var router = express.Router();
+const router = require('express').Router()
+const multer = require('multer')
+const usersController = require('../controllers/API/usersController')
+const {
+    uploadUser,
+    uploadPitchdeck
+} = require('../middleware/multer')
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+// Login
+router.post('/login',usersController.login)
 
-module.exports = router;
+// getuser by id
+router.get('/users/:id',usersController.detailUser)
+
+//confim signup email
+router.post('/register/:token', usersController.confirmasiEmail)
+
+// register
+router.post('/register', usersController.register)
+router.put('/registerStartup',uploadUser, usersController.registerStartup)
+router.put('/registerStartupCategory', usersController.registerCategory)
+router.put('/registerLocated', usersController.registerLocated)
+router.put('/registerStage', usersController.registerStage)
+router.put('/registerUpload',uploadPitchdeck, usersController.registerUpload)
+router.put('/yourProfile', usersController.yourProfile)
+router.put('/hearAboutUs', usersController.hearAboutUs)
+router.put('/packagePlan', usersController.packagePlan)
+router.post('/uploadPitchdeck',uploadPitchdeck, usersController.uploadPitchdeck)
+router.post('/uploadMockup',uploadPitchdeck, usersController.uploadMockup)
+router.post('/pitchdeckByUserId', usersController.pitchdeckByUserId)
+router.post('/getuser', usersController.getUser)
+
+router.put('/EditAccount',uploadUser, usersController.editAccount)
+router.put('/EditPersonal', usersController.editPersonal)
+router.put('/EditCompany',uploadUser, usersController.editCompany)
+
+
+module.exports = router
