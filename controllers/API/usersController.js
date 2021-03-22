@@ -143,7 +143,6 @@ module.exports = {
                 await user.save();
                 res.status(200).json("SUCCESS")
             } else if( user.startupLogo === undefined && req.file ){
-                await fs.unlink(path.join(`public/${user.startupLogo}`))
                 user.startupName = startupName;
                 user.websiteLink = websiteLink;
                 user.shortDescription = shortDescription;
