@@ -130,12 +130,16 @@ module.exports = {
     },
     registerStartup : async (req,res) => {
         try {
-            const { id, startupName, websiteLink, shortDescription } = req.body
+            const { id, startupName, websiteLink, shortDescription, category, location, startupStage, elevatorPitch } = req.body
             const user = await Users.findOne({ _id : id })
             if (req.file === undefined){
                 user.startupName = startupName;
                 user.websiteLink = websiteLink;
                 user.shortDescription = shortDescription;
+                user.category = category;
+                user.startupLocation = location;
+                user.startupStage = startupStage;
+                user.elevatorPitch = elevatorPitch
                 await user.save();
                 res.status(200).json("SUCCESS")
             } else if( user.startupLogo === undefined && req.file ){
@@ -143,6 +147,10 @@ module.exports = {
                 user.startupName = startupName;
                 user.websiteLink = websiteLink;
                 user.shortDescription = shortDescription;
+                user.category = category;
+                user.startupLocation = location;
+                user.startupStage = startupStage;
+                user.elevatorPitch = elevatorPitch
                 user.startupLogo = `image/user/${req.file.filename}`
                 await user.save()
                 res.status(200).json("SUCCESS PICTURE")
@@ -151,6 +159,10 @@ module.exports = {
                 user.startupName = startupName;
                 user.websiteLink = websiteLink;
                 user.shortDescription = shortDescription;
+                user.category = category;
+                user.startupLocation = location;
+                user.startupStage = startupStage;
+                user.elevatorPitch = elevatorPitch
                 user.startupLogo = `image/user/${req.file.filename}`
                 await user.save()
                 res.status(200).json("SUCCESS PICTURE REPLACE")
