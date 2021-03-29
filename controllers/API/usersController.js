@@ -439,12 +439,23 @@ module.exports = {
                     } 
                 })
                 if(arr_new.length < 3){
-                    await SubmitPitchdeck.create({
-                        file :id_file,
-                        user: id_user,
-                        pitch : id_pitch
+                    let arr_new_1 = []
+                    arr_new.map((item) => {
+                        if(item.pitch == id_pitch){
+                            arr_new_1.push(item)
+                        }
                     })
-                    res.status(200).json(arr_new)
+                    console.log(arr_new_1[0])
+                    if(arr_new_1[0] == undefined){
+                        await SubmitPitchdeck.create({
+                            file :id_file,
+                            user: id_user,
+                            pitch : id_pitch
+                        })
+                        res.status(200).json("Kosong")
+                    } else {
+                        res.status(200).json("ada")
+                    }
                 } else {
                     res.status(200).json(_date)
                 }
