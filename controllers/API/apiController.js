@@ -108,5 +108,5 @@ module.exports = {
         } catch (error) {
             res.status(201).json(error.message)
         }
-    }
+    },
 }

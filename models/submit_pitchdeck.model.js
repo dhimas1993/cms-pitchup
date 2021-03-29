@@ -1,17 +1,23 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const NewsSchema = new Schema({
-    title:{
-        type: String,
+const SubmitPitchdeck = new Schema({
+    user: {
+        type: Schema.Types.ObjectId,
         required: true
     },
     file: {
-        type: String
+        type: Schema.Types.ObjectId,
+        required: true
     },
     pitch: {
-        type: String
+        type: Schema.Types.ObjectId,
+        required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now()
     }
 })
 
-module.exports = mongoose.model('news', NewsSchema)
+module.exports = mongoose.model('submit_pitchdeck', SubmitPitchdeck)

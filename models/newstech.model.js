@@ -21,7 +21,7 @@ const NewsSchema = new Schema({
     date:{
         type: Date,
         default: Date.now()
-    }
+    },
 })
 
 // UserSchema.methods.testing_methods = function () {

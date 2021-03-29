@@ -1,9 +1,11 @@
 const Users = require('../../models/users.model')
 const Pitchdeck = require('../../models/pitchdeck.model')
+const SubmitPitchdeck = require('../../models/submit_pitchdeck.model')
 const bcrypt = require('bcrypt')
 const nodemailer = require('nodemailer');
 const fs = require('fs-extra')
 const path = require('path');
+const { create } = require('../../models/users.model');
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -404,6 +406,48 @@ module.exports = {
                 user.startupLogo = `image/user/${req.file.filename}`
                 await user.save()
                 res.status(200).json("SUCCESS PICTURE REPLACE")
+            }
+        } catch (error) {
+            res.status(201).json(error.message)
+        }
+    },
+    submitPitchdeck : async (req,res) => {
+        try {
+            const { id_file, id_user, id_pitch } = req.body
+
+            const _month = new Date().getMonth() + 1
+            const _year = new Date().getFullYear()
+            const _date = _month + _year.toString()
+
+            let arr = []
+            const currated = await Pitchdeck.findOne({ _id : id_file, isCurated : false })
+
+            if(currated !== null){
+                const data = await SubmitPitchdeck.find({
+                    file :id_file,
+                    user: id_user,
+                })
+                await data.map((item) => { arr.push(item) })
+
+                let arr_new = []
+                await arr.map((_result) => {
+                    const tgl = _result.date.getMonth() + 1
+                    const tahun = _result.date.getFullYear()
+                    const tgl_tahun = tgl + tahun.toString()
+                    if(tgl_tahun === _date){
+                        arr_new.push(_result)
+                    } 
+                })
+                if(arr_new.length < 3){
+                    await SubmitPitchdeck.create({
+                        file :id_file,
+                        user: id_user,
+                        pitch : id_pitch
+                    })
+                    res.status(200).json(arr_new)
+                } else {
+                    res.status(200).json(_date)
+                }
             }
         } catch (error) {
             res.status(201).json(error.message)
