@@ -420,7 +420,7 @@ module.exports = {
             const _date = _month + _year.toString()
 
             let arr = []
-            const currated = await Pitchdeck.findOne({ _id : id_file, isCurated : false })
+            const currated = await Pitchdeck.find({ user: id_user,_id : id_file, isCurated : false })
 
             if(currated !== null){
                 const data = await SubmitPitchdeck.find({
@@ -435,9 +435,11 @@ module.exports = {
                     const tahun = _result.date.getFullYear()
                     const tgl_tahun = tgl + tahun.toString()
                     if(tgl_tahun === _date){
+                        // console.log(tgl_tahun, _date)
                         arr_new.push(_result)
                     } 
                 })
+                // console.log(arr_new.length) // 1
                 if(arr_new.length < 3){
                     let arr_new_1 = []
                     arr_new.map((item) => {
@@ -452,13 +454,16 @@ module.exports = {
                             user: id_user,
                             pitch : id_pitch
                         })
-                        res.status(200).json("Kosong")
+                        res.status(200).json("SUCCESS")
                     } else {
-                        res.status(200).json("ada")
+                        res.status(200).json("SUBMIT ANOTHER VC")
                     }
                 } else {
-                    res.status(200).json(_date)
+                    res.status(200).json("TOO MUCH SUBMIT")
                 }
+            } else {
+                res.status(200).json("NULL")
+                // res.status(200).json(currated)
             }
         } catch (error) {
             res.status(201).json(error.message)
