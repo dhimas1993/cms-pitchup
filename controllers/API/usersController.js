@@ -281,11 +281,12 @@ module.exports = {
                 file : `image/pitchdeck/${data.filename}`,
                 isCurated : false,
                 name : data.originalname
-            }).then((res) => {
-                console.log(res)
+            }).then((result) => {
+                console.log(result)
                 res.status(200).json("SUCCESS")
+            }).catch((err) => {
+                res.status(200).json(err.message)
             })
-            res.status(200).json(data)
         } catch (error) {
             res.status(201).json(error.message)
         }
@@ -439,7 +440,7 @@ module.exports = {
                         arr_new.push(_result)
                     } 
                 })
-                // console.log(arr_new.length) // 1
+                console.log('length',arr_new.length) // 1
                 if(arr_new.length < 3){
                     let arr_new_1 = []
                     arr_new.map((item) => {
@@ -447,8 +448,8 @@ module.exports = {
                             arr_new_1.push(item)
                         }
                     })
-                    console.log(arr_new_1[0])
-                    if(arr_new_1[0] == undefined){
+                    console.log("new arr",arr_new_1[0])
+                    if(arr_new_1[0] === undefined){
                         await SubmitPitchdeck.create({
                             file :id_file,
                             user: id_user,
@@ -456,7 +457,7 @@ module.exports = {
                         })
                         res.status(200).json("SUCCESS")
                     } else {
-                        res.status(200).json("SUBMIT ANOTHER VC")
+                        res.status(200).json("SUBMIT TO ANOTHER VC")
                     }
                 } else {
                     res.status(200).json("TOO MUCH SUBMIT")
@@ -469,4 +470,16 @@ module.exports = {
             res.status(201).json(error.message)
         }
     },
+    sumbitTerms : async (req, res) => {
+        try {
+            const {id} = req.body
+            const user = await Users.findOne({ _id : id })
+            if(user){
+                user.terms = true
+                res.status(201).json("SUCCESS")
+            }
+        } catch (error) {
+            res.status(201).json(error.message)
+        }
+    }
 }

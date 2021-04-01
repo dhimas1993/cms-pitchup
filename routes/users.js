@@ -30,6 +30,7 @@ router.post('/uploadMockup',uploadPitchdeck, usersController.uploadMockup)
 router.post('/pitchdeckByUserId', usersController.pitchdeckByUserId)
 router.post('/getuser', usersController.getUser)
 router.post('/submit_pitchdeck', usersController.submitPitchdeck)
+router.put('/submit_terms', usersController.sumbitTerms)
 
 router.put('/EditAccount',uploadUser, usersController.editAccount)
 router.put('/EditPersonal', usersController.editPersonal)

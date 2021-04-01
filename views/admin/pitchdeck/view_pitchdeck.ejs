@@ -74,3 +74,18 @@
     </div>
 
 <%- include('../../component/js.ejs') %>
+<%- include('./edit_modal.ejs') %>
+
+<script>
+    $('#dataTable').on('click', '.button-update', function(){
+        let id = $(this).data('id');
+        let isCurated = $(this).data('isCurated');
+        let curated = $(this).data('curated');
+        let name = $(this).data('name');
+        $('#edit-modal').modal('show')
+        $('.id').val(id)
+        $('.isCurated').val(isCurated)
+        $('.curated').val(curated)
+        $('.name').val(name)
+    })
+</script>

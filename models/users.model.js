@@ -94,8 +94,9 @@ const UserSchema = new Schema({
     elevatorPitch : {
         type: String
     },
-    isTerm : {
-        type: Boolean
+    terms : {
+        type: Boolean,
+        default: false
     }
 })
 

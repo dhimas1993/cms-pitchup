@@ -19,7 +19,7 @@ const storagePitchdeck = multer.diskStorage({
 
 const uploadPitchdeck = multer({
   storage: storagePitchdeck,
-  limits: { fileSize: 2000000 }, // 2 mb
+  limits: { fileSize: 50000000 }, // 2 mb
   fileFilter: function (req, file, cb) {
     checkFileType(file, cb);
   }

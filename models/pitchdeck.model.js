@@ -17,8 +17,8 @@ const PitchDeckSchema = new Schema({
         default: Date.now()
     },
     isCurated:{
-        type: Boolean,
-        default: false
+        type: String,
+        default: "false"
     },
     feedbacks:[{
         type: Schema.Types.ObjectId,
