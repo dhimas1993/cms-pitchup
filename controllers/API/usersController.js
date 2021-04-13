@@ -18,6 +18,7 @@ var transporter = nodemailer.createTransport({
 
 module.exports = {
     login : async (req,res) => {
+        // res.status(200).json(req.body)
         try {
             const { email, password } = req.body
             const users = await Users.findOne({
@@ -31,9 +32,9 @@ module.exports = {
             } else {
                 const match = await bcrypt.compare(password, users.password)
                 if(match){
-                    return res.send(users)
+                    return res.status(200).json(users)
                 } else {
-                    return res.send('FAILED')
+                    return res.status(500).json('PASSWORD NOT MATCH')
                 }
             }
         } catch (error) {
@@ -100,16 +101,16 @@ module.exports = {
     detailUser : async (req,res) => {
         try {
             const { id } = req.params
-            const users = await Users.findOne({
-                _id: id
-            }).populate('category')
+            let users = await Users.findOne({ _id: id }).populate('category')
+            const pitchdeck = await SubmitPitchdeck.find({ user : id})
+
             if(users){
-                return res.send(users)
+                res.status(200).json(users, pitchdeck)
             } else {
-                return res.send('FAILED')
+                res.status(200).json('FAIL')
             }
         } catch (error) {
-            res.status(500).json(error)
+            res.status(500).json(error.message)
         }
     },
     confirmasiEmail : async (req,res) => {

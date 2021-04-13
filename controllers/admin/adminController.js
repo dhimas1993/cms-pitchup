@@ -13,18 +13,13 @@ module.exports = {
             const alertMessage = req.flash('alertMessage')
             const alertStatus = req.flash('alertStatus')
             const alert = {message: alertMessage, status: alertStatus}
+            const url = req.route.path
             res.render('admin/dashboard/view_dashboard',{
                 admin, mentor, pitch, pitchdeck,
-                alert
+                alert, url
             })
         } catch (error) {
             res.render('admin/admin/view_admin')
         }
     },
-    
-
-    // viewUser: (req,res) => {
-    //     res.render('admin/user/view_user')
-    // },
-
 }

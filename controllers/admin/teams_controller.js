@@ -11,10 +11,12 @@ module.exports = {
             const alertMessage = req.flash('alertMessage')
             const alertStatus = req.flash('alertStatus')
             const alert = {message: alertMessage, status: alertStatus}
+            const url = req.route.path
             res.render('admin/teams/view_teams', {
                 title: 'PitchUp | teams',
                 teams, pitch,
-                alert
+                alert,
+                url
             })
         } catch (error) {
             req.flash('alertMessage', `${error.message}`)
@@ -75,7 +77,7 @@ module.exports = {
         } catch (error) {
             req.flash('alertMessage', `${error.message}`)
             req.flash('alertStatus', 'danger')
-            res.redirect('/slider')
+            res.redirect('/teams')
         }
     },
     deleteTeams: async (req,res) => {

@@ -27,7 +27,6 @@ module.exports = {
                 email: email,
                 role: 'admin'
             })
-            console.log(users.id)
             if (!users) {
                 req.flash('alertMessage', 'User atau password yang anda masukan salah!!')
                 req.flash('alertStatus', 'info')
@@ -47,8 +46,6 @@ module.exports = {
                 req.flash('alertStatus', 'info')
                 res.redirect('/')
             }
-
-            
         } catch (error) {
             req.flash('alertMessage', 'User atau password yang anda masukan salah!!')
             req.flash('alertStatus', 'info')

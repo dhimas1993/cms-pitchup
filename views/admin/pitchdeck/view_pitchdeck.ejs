@@ -79,13 +79,11 @@
 <script>
     $('#dataTable').on('click', '.button-update', function(){
         let id = $(this).data('id');
-        let isCurated = $(this).data('isCurated');
-        let curated = $(this).data('curated');
+        let status = $(this).data('status');
         let name = $(this).data('name');
         $('#edit-modal').modal('show')
         $('.id').val(id)
-        $('.isCurated').val(isCurated)
-        $('.curated').val(curated)
+        $('.status').val(status)
         $('.name').val(name)
     })
 </script>

@@ -12,7 +12,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
+    <li class="<%= url == '/dashboard' ? 'nav-item active' : 'nav-item' %>">
         <a class="nav-link" href="/dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -27,44 +27,44 @@
     </div>
 
     <!-- Nav Item - Charts -->
-    <li class="nav-item">
+    <li class="<%= url == '/slider' ? 'nav-item active' : 'nav-item' %>">
         <a class="nav-link" href="/slider">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Slider</span></a>
     </li>
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
+    <li class="<%= url == '/news' ? 'nav-item active' : 'nav-item' %>">
         <a class="nav-link" href="/news">
             <i class="fas fa-newspaper "></i>
             <span>News</span></a>
     </li>
 
-    <li class="nav-item">
+    <li class="<%= url == '/category' ? 'nav-item active' : 'nav-item' %>">
         <a class="nav-link" href="/category">
             <i class="fas fa-folder fa-fw"></i>
             <span>Category</span></a>
     </li>
 
-    <li class="nav-item">
+    <li class="<%= url == '/pitch' ? 'nav-item active' : 'nav-item' %>">
         <a class="nav-link" href="/pitch">
             <i class="fas fa-file-powerpoint fa-fw"></i>
             <span>Pitch</span></a>
     </li>
 
-    <li class="nav-item">
+    <li class="<%= url == '/teams' ? 'nav-item active' : 'nav-item' %>">
         <a class="nav-link" href="/teams">
             <i class="fas fa-file-powerpoint fa-fw"></i>
             <span>Teams</span></a>
     </li>
 
-    <li class="nav-item">
+    <li class="<%= url == '/users' ? 'nav-item active' : 'nav-item' %>">
         <a class="nav-link" href="/users">
             <i class="fas fa-user fa-fw"></i>
             <span>User (Start Up)</span></a>
     </li>
 
-    <li class="nav-item">
+    <li class="<%= url == '/pitchdeck' ? 'nav-item active' : 'nav-item' %>">
         <a class="nav-link" href="/pitchdeck">
             <i class="fas fa-file-powerpoint fa-fw"></i>
             <span>Pitchdeck</span></a>
@@ -78,7 +78,7 @@
         Account
     </div>
 
-    <li class="nav-item">
+    <li class="<%= url == '/admin-user' ? 'nav-item active' : 'nav-item' %>">
         <a class="nav-link" href="/admin-user">
             <i class="fas fa-fw fa-users-cog"></i>
             <span>Admin User</span></a>
@@ -86,7 +86,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/logout">
             <i class="fas fa-fw fa-sign-out-alt"></i>
             <span>Logout</span></a>
     </li>

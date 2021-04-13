@@ -7,9 +7,11 @@ module.exports = {
             const alertMessage = req.flash('alertMessage')
             const alertStatus = req.flash('alertStatus')
             const alert = {message: alertMessage, status: alertStatus}
+            const url = req.route.path
             res.render('admin/category/view_category', {
                 category,
-                alert
+                alert,
+                url
             })
         } catch (error) {
             res.render('category/view_category')

@@ -9,9 +9,11 @@ module.exports = {
             const alertMessage = req.flash('alertMessage')
             const alertStatus = req.flash('alertStatus')
             const alert = {message: alertMessage, status: alertStatus}
+            const url = req.route.path
             res.render('admin/news/view_news', {
                 news,
-                alert
+                alert,
+                url
             })
         } catch (error) {
             res.render('admin/news/view_news')

@@ -9,10 +9,12 @@ module.exports = {
             const alertMessage = req.flash('alertMessage')
             const alertStatus = req.flash('alertStatus')
             const alert = {message: alertMessage, status: alertStatus}
+            const url = req.route.path
             res.render('admin/slider/view_slider', {
                 title: 'PitchUp | slider',
                 slider,
-                alert
+                alert,
+                url
             })
         } catch (error) {
             req.flash('alertMessage', `$error.message`)

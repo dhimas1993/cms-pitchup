@@ -65,5 +65,6 @@ router.get('/users', users_controller.viewUsers)
 
 // PITCHDECK
 router.get('/pitchdeck', pitchdeck_controller.viewPitchdeck)
+router.put('/pitchdeck', pitchdeck_controller.editPitchdeck)
 
 module.exports = router
