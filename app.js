@@ -38,7 +38,10 @@ app.use(session({
 app.use(flash())
 app.locals.baseURL = process.env.WEB_URI
 
+// live
 const uri = process.env.ATLAS_URI
+// development
+// const uri = process.env.ATLAS_URI_DEV
 mongoose.connect(uri, {useNewUrlParser : true,useUnifiedTopology: true, useCreateIndex: true})
 
 const connection = mongoose.connection
