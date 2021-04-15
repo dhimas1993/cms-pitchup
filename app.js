@@ -36,7 +36,7 @@ app.use(session({
     cookie: {maxAge: 3600000 * 2}
 }))
 app.use(flash())
-app.locals.baseURL = process.env.WEB_URI
+app.locals.baseURL = process.env.WEB_URI_DEV
 
 // live
 const uri = process.env.ATLAS_URI

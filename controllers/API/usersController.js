@@ -101,11 +101,27 @@ module.exports = {
     detailUser : async (req,res) => {
         try {
             const { id } = req.params
+            const today = new Date()
+            const month = today.getMonth()
+            let pitch_request = []
+
             let users = await Users.findOne({ _id: id }).populate('category')
             const pitchdeck = await SubmitPitchdeck.find({ user : id})
 
+            for (let i = 0; i < pitchdeck.length; i++) {
+                const element = pitchdeck[i].date.getMonth();
+                if(element == month){
+                    pitch_request.push(pitchdeck[i])
+                }
+            }
+
             if(users){
-                res.status(200).json(users, pitchdeck)
+                res.send({
+                    'pitch_request' : pitch_request.length,
+                    'status' : 200,
+                    'users' : users,
+                    'pitchdeck' : pitchdeck
+                })
             } else {
                 res.status(200).json('FAIL')
             }
@@ -325,13 +341,42 @@ module.exports = {
         }
     },
     getUser : async (req,res) => {
+        // try {
+        //     let {id} = req.body
+        //     const user =await Users.findOne({ _id : id})
+        //     .populate('categories')
+        //     res.status(200).json(user)
+        // } catch (error) {
+        //     res.status(201).json(error.message)
+        // }
         try {
-            let {id} = req.body
-            const user =await Users.findOne({ _id : id})
-            .populate('categories')
-            res.status(200).json(user)
+            const { id } = req.params
+            const today = new Date()
+            const month = today.getMonth()
+            let pitch_request = []
+
+            let users = await Users.findOne({ _id: id }).populate('category')
+            const pitchdeck = await SubmitPitchdeck.find({ user : id})
+
+            for (let i = 0; i < pitchdeck.length; i++) {
+                const element = pitchdeck[i].date.getMonth();
+                if(element == month){
+                    pitch_request.push(pitchdeck[i])
+                }
+            }
+
+            if(users){
+                res.send({
+                    'pitch_request' : pitch_request.length,
+                    'status' : 200,
+                    'users' : users,
+                    'pitchdeck' : pitchdeck
+                })
+            } else {
+                res.status(200).json('FAIL')
+            }
         } catch (error) {
-            res.status(201).json(error.message)
+            res.status(500).json(error.message)
         }
     },
     editAccount : async (req,res) => {
