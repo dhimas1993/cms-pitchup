@@ -54,17 +54,29 @@ module.exports = {
                 req.flash('alertStatus', 'success')
                 res.redirect('/news')
             } else {
-                await fs.unlink(path.join(`public/${news.companyLogo}`))
-                await fs.unlink(path.join(`public/${news.headlinePicture}`))
-                news.title = title;
-                news.companyName = companyName;
-                news.companyUrl = companyUrl;
-                news.companyLogo = `image/newstech/${req.files[0].filename}`
-                news.headlinePicture = `image/newstech/${req.files[1].filename}`
-                await news.save()
-                req.flash('alertMessage', 'Success edit news')
-                req.flash('alertStatus', 'success')
-                res.redirect('/news')
+                if(req.files.length === 1){
+                    await fs.unlink(path.join(`public/${news.companyLogo}`))
+                    news.title = title;
+                    news.companyName = companyName;
+                    news.companyUrl = companyUrl;
+                    news.companyLogo = `image/newstech/${req.files[0].filename}`
+                    await news.save()
+                    req.flash('alertMessage', 'Success edit news')
+                    req.flash('alertStatus', 'success')
+                    res.redirect('/news')
+                } else {
+                    await fs.unlink(path.join(`public/${news.companyLogo}`))
+                    await fs.unlink(path.join(`public/${news.headlinePicture}`))
+                    news.title = title;
+                    news.companyName = companyName;
+                    news.companyUrl = companyUrl;
+                    news.companyLogo = `image/newstech/${req.files[0].filename}`
+                    news.headlinePicture = `image/newstech/${req.files[1].filename}`
+                    await news.save()
+                    req.flash('alertMessage', 'Success edit news')
+                    req.flash('alertStatus', 'success')
+                    res.redirect('/news')
+                }
             }
         } catch (error) {
             req.flash('alertMessage', `${error.message}`)
