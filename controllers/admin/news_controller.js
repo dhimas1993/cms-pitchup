@@ -44,6 +44,7 @@ module.exports = {
         try {
             const {id, title, companyName, companyUrl} = req.body
             const news = await News.findOne({_id : id})
+            // console.log(req.files.image)
             if (req.files[0] === undefined){
                 news.title = title;
                 news.companyName = companyName;

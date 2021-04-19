@@ -329,7 +329,7 @@ module.exports = {
     pitchdeckByUserId : async (req,res) => {
         try {
             const { id } = req.body
-            const pitchdeck = await Pitchdeck.find({ user : id })
+            const pitchdeck = await Pitchdeck.find({ user : id, isCurated: 'true' })
             if(pitchdeck){
                 res.status(200).json(pitchdeck)
             } else {

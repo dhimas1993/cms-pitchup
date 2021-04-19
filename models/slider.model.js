@@ -9,6 +9,10 @@ const SliderSchema = new Schema({
     file:{
         type: String,
     },
+    url: {
+        type: String,
+        required: true
+    },
     date:{
         type: Date,
         default: Date.now()

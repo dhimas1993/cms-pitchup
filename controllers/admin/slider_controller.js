@@ -25,26 +25,28 @@ module.exports = {
 
     addSlider: async (req,res) => {
         try {
-            const {name} = req.body
+            const {name, url} = req.body
             await Slider.create({
                 name : name,
+                url : url,
                 file : `image/slider/${req.file.filename}`
             })
             req.flash('alertMessage', 'Success add slider')
             req.flash('alertStatus', 'success')
             res.redirect('/slider')
         } catch (error) {
-            req.flash('alertMessage', `$error.message`)
+            req.flash('alertMessage', `${error.message}`)
             req.flash('alertStatus', 'danger')
             res.redirect('/slider')
         }
     },
     editSlider : async (req,res) => {
         try {
-            const {id, name} = req.body
+            const {id, name,url} = req.body
             const slider = await Slider.findOne({_id : id})
             if (req.file === undefined){
                 slider.name = name;
+                slider.url = url;
                 await slider.save();
                 req.flash('alertMessage', 'Success edit slider')
                 req.flash('alertStatus', 'success')
@@ -68,6 +70,7 @@ module.exports = {
         try {
             const {id} = req.params
             const slider = await Slider.findOne({_id : id});
+            // console.log(slider)
             await fs.unlink(path.join(`public/${slider.file}`))
             await slider.remove()
             req.flash('alertMessage', 'Success delete slider')
