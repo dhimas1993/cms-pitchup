@@ -30,16 +30,16 @@ module.exports = {
             } else {
                 if (file.length === 2){
                     let _label = []
-                    let res = label.split(",")
-                    res.map((item) => {
+                    let result = label.split(",")
+                    result.map((item) => {
                         _label.push(item.trim())
                     })
                     await Pitch.create({
                         name : name,
                         body : body,
                         label : _label,
-                        file : file[0].filename,
-                        portofolioLogo : file[1].filename
+                        file : `image/pitch/${file[0].filename}`,
+                        portofolioLogo : `image/pitch/${file[1].filename}`
                     })
                     req.flash('alertMessage', 'Success add pitch')
                     req.flash('alertStatus', 'success')
@@ -47,13 +47,13 @@ module.exports = {
                 } else {
                     let portofoliologoname = []
                     let _label = []
-                    let res = label.split(",")
+                    let result = label.split(",")
 
                     for (let i = 1; i < file.length; i++) {
                         portofoliologoname.push(`image/pitch/${file[i].filename}`)
                     }
 
-                    res.map((item) => {
+                    result.map((item) => {
                         _label.push(item.trim())
                     })
 
@@ -84,9 +84,9 @@ module.exports = {
             console.log(req.files)
             if (req.files[0] === undefined){
                 let _label = []
-                let res = label.split(",")
+                let result = label.split(",")
 
-                res.map((item) => {
+                result.map((item) => {
                     _label.push(item.trim())
                 })
 
@@ -100,9 +100,9 @@ module.exports = {
             } else if(req.files.length == 1){
                 await fs.unlink(path.join(`public/${pitch.file}`))
                 let _label = []
-                let res = label.split(",")
+                let result = label.split(",")
 
-                res.map((item) => {
+                result.map((item) => {
                     _label.push(item.trim())
                 })
 
@@ -123,13 +123,13 @@ module.exports = {
 
                 let portofoliologoname = []
                 let _label = []
-                let res = label.split(",")
+                let result = label.split(",")
 
                 for (let i = 1; i < req.files.length; i++) {
                     portofoliologoname.push(`image/pitch/${req.files[i].filename}`)
                 }
 
-                res.map((item) => {
+                result.map((item) => {
                     _label.push(item.trim())
                 })
 

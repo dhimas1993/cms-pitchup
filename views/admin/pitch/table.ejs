@@ -40,7 +40,7 @@
                             <td><%= i + 1%></td>
                             <td><%= pitch[i].name %></td>
                             <td>
-                                <img src="<%= process.env.WEB_URI %><%= pitch[i].file %>" alt="no display" width="50px">
+                                <img src="<%= process.env.WEB_URI %><%= pitch[i].file %>" alt="<%= pitch[i].file %>" width="50px">
                             </td>
                             <td>
                                 <% portofolioLogo = pitch[i].portofolioLogo.map(function(elem) { %>
