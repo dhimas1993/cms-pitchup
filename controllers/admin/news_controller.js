@@ -22,7 +22,6 @@ module.exports = {
     addNews: async (req,res) => {
         try {
             const {title, companyName, companyUrl} = req.body
-            // console.log(req.body)
             await News.create({
                 title : title,
                 companyName : companyName,
@@ -30,11 +29,12 @@ module.exports = {
                 companyLogo : `image/newstech/${req.files[0].filename}`,
                 headlinePicture : `image/newstech/${req.files[1].filename}`
             })
-            req.flash('alertMessage', 'Success add slider')
+
+            req.flash('alertMessage', 'Success add news')
             req.flash('alertStatus', 'success')
             res.redirect('/news')
         } catch (error) {
-            req.flash('alertMessage', `$error.message`)
+            req.flash('alertMessage', `${error.message}`)
             req.flash('alertStatus', 'danger')
             res.redirect('/news')
         }
@@ -44,7 +44,6 @@ module.exports = {
         try {
             const {id, title, companyName, companyUrl} = req.body
             const news = await News.findOne({_id : id})
-            // console.log(req.files.image)
             if (req.files[0] === undefined){
                 news.title = title;
                 news.companyName = companyName;
@@ -54,15 +53,9 @@ module.exports = {
                 req.flash('alertStatus', 'success')
                 res.redirect('/news')
             } else {
-                if(req.files.length === 1){
-                    await fs.unlink(path.join(`public/${news.companyLogo}`))
-                    news.title = title;
-                    news.companyName = companyName;
-                    news.companyUrl = companyUrl;
-                    news.companyLogo = `image/newstech/${req.files[0].filename}`
-                    await news.save()
-                    req.flash('alertMessage', 'Success edit news')
-                    req.flash('alertStatus', 'success')
+                if(req.files.length == 1){
+                    req.flash('alertMessage', 'Failed, image Headline and Company Logo cant empty')
+                    req.flash('alertStatus', 'danger')
                     res.redirect('/news')
                 } else {
                     await fs.unlink(path.join(`public/${news.companyLogo}`))

@@ -13,7 +13,8 @@ const Auth = require('../middleware/auth.js')
 
 const {
     uploadSlider, 
-    uploadNews, 
+    uploadNews,
+    // uploadNewsHeadline,
     uploadPitch,
     uploadTeams
 } = require('../middleware/multer')

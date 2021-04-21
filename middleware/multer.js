@@ -107,6 +107,14 @@ const uploadNews = multer({
   }
 }).array("image",12);
 
+// const uploadNewsHeadline = multer({
+//   storage: storageMultipleNews,
+//   limits: { fileSize: 2000000 }, // 2 MB
+//   fileFilter: function (req, file, cb) {
+//     checkFileType(file, cb);
+//   }
+// }).array("imageHeadline",12);
+
 ///////////////////////////////////////////////// SLIDER /////////////////////////////////////////
 const storageSlider = multer.diskStorage({
   destination: "public/image/slider/",
@@ -159,7 +167,8 @@ function checkFileType(file, cb) {
 module.exports = { 
   uploadMultiple, 
   uploadSlider, 
-  uploadNews, 
+  uploadNews,
+  // uploadNewsHeadline, 
   uploadPitch, 
   uploadTeams,
   uploadUser,

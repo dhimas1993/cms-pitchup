@@ -20,16 +20,12 @@ module.exports = {
         }
     },
     addPitch: async (req,res) => {
-        // console.log("satu",req.body)
-        // console.log("dua",req.file)
-        // console.log("tiga",req.files)
         try {
             const {name, body, label} = req.body
             const file = req.files
+            console.log(file)
             if(file){
-                // console.log('file ada')
                 if (file.length === 2){
-                    // console.log('file ada 2',file)
                     await Pitch.create({
                         name : name,
                         body : body,
@@ -37,12 +33,11 @@ module.exports = {
                         file : file[0].filename,
                         portofolioLogo : file[1].filename
                     })
-                    req.flash('alertMessage', 'Success add slider')
+                    req.flash('alertMessage', 'Success add pitch')
                     req.flash('alertStatus', 'success')
                     res.redirect('/pitch')
                 } else {
                     var portofoliologoname = []
-                    // console.log('file lebih dari 2', portofoliologoname)
                     for (let i = 1; i < file.length; i++) {
                         portofoliologoname.push(`image/pitch/${file[i].filename}`)
                     }
