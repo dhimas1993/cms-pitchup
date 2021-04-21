@@ -23,13 +23,21 @@ module.exports = {
         try {
             const {name, body, label} = req.body
             const file = req.files
-            console.log(file)
-            if(file){
+            if(file.length < 2){
+                req.flash('alertMessage', 'Logo and Portofolio Logo')
+                req.flash('alertStatus', 'danger')
+                res.redirect('/pitch')
+            } else {
                 if (file.length === 2){
+                    let _label = []
+                    let res = label.split(",")
+                    res.map((item) => {
+                        _label.push(item.trim())
+                    })
                     await Pitch.create({
                         name : name,
                         body : body,
-                        label : label,
+                        label : _label,
                         file : file[0].filename,
                         portofolioLogo : file[1].filename
                     })
@@ -37,18 +45,26 @@ module.exports = {
                     req.flash('alertStatus', 'success')
                     res.redirect('/pitch')
                 } else {
-                    var portofoliologoname = []
+                    let portofoliologoname = []
+                    let _label = []
+                    let res = label.split(",")
+
                     for (let i = 1; i < file.length; i++) {
                         portofoliologoname.push(`image/pitch/${file[i].filename}`)
                     }
-                    console.log('length', portofoliologoname)
+
+                    res.map((item) => {
+                        _label.push(item.trim())
+                    })
+
                     await Pitch.create({
                     name : name,
                         body : body,
-                        label : label,
+                        label : _label,
                         file : `image/pitch/${req.files[0].filename}`,
                         portofolioLogo : portofoliologoname
                     })
+
                     req.flash('alertMessage', 'Success add slider')
                     req.flash('alertStatus', 'success')
                     res.redirect('/pitch')
@@ -64,18 +80,64 @@ module.exports = {
         try {
             const {id, name, label, body} = req.body
             const pitch = await Pitch.findOne({_id : id})
+            console.log(req.body)
+            console.log(req.files)
             if (req.files[0] === undefined){
+                let _label = []
+                let res = label.split(",")
+
+                res.map((item) => {
+                    _label.push(item.trim())
+                })
+
                 pitch.name = name;
-                pitch.label = label;
+                pitch.label = _label;
                 pitch.body = body;
                 await pitch.save();
                 req.flash('alertMessage', 'Success edit pitch')
                 req.flash('alertStatus', 'success')
                 res.redirect('/pitch')
+            } else if(req.files.length == 1){
+                await fs.unlink(path.join(`public/${pitch.file}`))
+                let _label = []
+                let res = label.split(",")
+
+                res.map((item) => {
+                    _label.push(item.trim())
+                })
+
+                pitch.name = name;
+                pitch.label = _label;
+                pitch.body = body;
+                pitch.file = `image/pitch/${req.files[0].filename}`
+                await pitch.save()
+                req.flash('alertMessage', 'Success edit pitch')
+                req.flash('alertStatus', 'success')
+                res.redirect('/pitch')
             } else {
                 await fs.unlink(path.join(`public/${pitch.file}`))
-                pitch.name = name
-                pitch.file = `image/pitch/${req.file.filename}`
+
+                pitch.portofolioLogo.map( async (item) => {
+                    await fs.unlink(path.join(`public/${item}`))
+                })
+
+                let portofoliologoname = []
+                let _label = []
+                let res = label.split(",")
+
+                for (let i = 1; i < req.files.length; i++) {
+                    portofoliologoname.push(`image/pitch/${req.files[i].filename}`)
+                }
+
+                res.map((item) => {
+                    _label.push(item.trim())
+                })
+
+                pitch.name = name;
+                pitch.label = _label;
+                pitch.body = body;
+                pitch.file = `image/pitch/${req.files[0].filename}`
+                pitch.portofolioLogo = portofoliologoname
                 await pitch.save()
                 req.flash('alertMessage', 'Success edit pitch')
                 req.flash('alertStatus', 'success')

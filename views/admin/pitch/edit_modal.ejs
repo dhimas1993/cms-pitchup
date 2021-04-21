@@ -10,41 +10,41 @@
       </div>
 
       <form action="/pitch/?_method=PUT" method="POST" enctype="multipart/form-data">
-          <div class="modal-body">
-              <div class="form-group">
-              <label for="name">Name</label>
-              <input required name='name' type="text" class="form-control name"  placeholder="Enter Title Name">
-              </div>
-              <div class="form-group">
-                  <label for="name">Logo</label>
-                  <input  name='file' type="file" class="form-control" placeholder="Choose Logo Company">
-              </div>
-              <div class="form-group">
-                  <label for="body">Description</label>
-                  <textarea required name="body" class="form-control body" cols="30" rows="10" placeholder="Enter Description"></textarea>
-              </div>
-              <div class="form-group">
-                  <label for="label">Label</label>
-                  <div id="add-input">
-                      <input name="label" type="text" class="form-control label" id="label" placeholder="Enter Label">
-                      <button id="add-label" type="button" class="btn btn-info">+</button>
-                  </div>
-              </div>
-      
-              <div class="form-group">
-                  <label for="portofolioLogo">Portofolio Logo</label>
-                  <input name="file" type="file" class="form-control">
-                  <input name="file" type="file" class="form-control">
-                  <input name="file" type="file" class="form-control">
-                  <input name="file" type="file" class="form-control">
-                  <input name="file" type="file" class="form-control">
-              </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input required name='name' type="text" class="form-control name"  placeholder="Enter Title Name">
           </div>
-          <div class="modal-footer">
-              <input type="hidden" name="id" class="id">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
+          <div class="form-group">
+            <label for="name">Logo</label>
+            <input name='file' type="file" class="form-control" placeholder="Choose Logo Company">
           </div>
+          <div class="form-group">
+            <label for="body">Description</label>
+            <textarea required name="body" class="form-control body" cols="30" rows="10" placeholder="Enter Description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="label">Label</label>
+            <div id="add-input">
+              <input name="label" type="text" class="form-control label" id="label" placeholder="Enter Label">
+              <button id="add-label" type="button" class="btn btn-info">+</button>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="portofolioLogo">Portofolio Logo</label>
+            <input name="file" type="file" class="form-control">
+            <input name="file" type="file" class="form-control">
+            <input name="file" type="file" class="form-control">
+            <input name="file" type="file" class="form-control">
+            <input name="file" type="file" class="form-control">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="hidden" name="id" class="id">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
       </form>
 
     </div>
