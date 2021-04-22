@@ -54,8 +54,15 @@ module.exports = {
                 res.redirect('/news')
             } else {
                 if(req.files.length == 1){
-                    req.flash('alertMessage', 'Failed, image Headline and Company Logo cant empty')
-                    req.flash('alertStatus', 'danger')
+                    await fs.unlink(path.join(`public/${news.companyLogo}`))
+
+                    news.title = title;
+                    news.companyName = companyName;
+                    news.companyUrl = companyUrl;
+                    news.companyLogo = `image/newstech/${req.files[0].filename}`
+                    await news.save()
+                    req.flash('alertMessage', 'Success edit news')
+                    req.flash('alertStatus', 'success')
                     res.redirect('/news')
                 } else {
                     await fs.unlink(path.join(`public/${news.companyLogo}`))
@@ -81,7 +88,7 @@ module.exports = {
         try {
             const {id} = req.params
             const news = await News.findOne({_id : id});
-            // console.log(news.companyLogo)
+            
             await fs.unlink(path.join(`public/${news.companyLogo}`))
             await fs.unlink(path.join(`public/${news.headlinePicture}`))
             await news.remove()
