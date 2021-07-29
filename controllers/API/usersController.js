@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt')
 const nodemailer = require('nodemailer');
 const fs = require('fs-extra')
 const path = require('path');
-const { create } = require('../../models/users.model');
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -62,7 +61,7 @@ module.exports = {
                         <h3>Halo ${firstName}</h3>
                         <h3>Silehkan Klik link berikut untuk konfirmasi email anda</h3>
                         </br> 
-                        <a href="https://pitchup.herokuapp.com/confirmationCode/${token}">Click Here !!</a> 
+                        <a href="${process.env.WEB_URI}/confirmationCode/${token}">Click Here !!</a> 
                     </div>
                 `
             };
