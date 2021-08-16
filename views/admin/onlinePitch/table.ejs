@@ -1,0 +1,70 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-modal">
+            Add Online Pitch
+        </button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>File</th>
+                        <th>isCurrated</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>File</th>
+                        <th>isCurrated</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <% for(let i=0; i < pitch.length; i++) { %>
+                        <% const a=pitch[i].teams %>
+                            <tr class="center">
+                                <td>
+                                    <%= i + 1%>
+                                </td>
+                                <td>
+                                    <%= pitch[i].users.startupName %>
+                                </td>
+                                <td> <a target="_blank" href='<%= baseURL %><%= pitch[i].file %>'>View File</a> </td>
+                                <td>
+                                    <%= pitch[i].isCurrated %>
+                                </td>
+                                <td>
+                                    <%= pitch[i].date.getDay() %> -
+                                        <%= pitch[i].date.getMonth() + 1%> - <%= pitch[i].date.getFullYear() %>
+                                </td>
+                                <td>
+                                    <form action="/online-pitch/<%= pitch[i].id %>?_method=DELETE" method="POST">
+                                        <a href="javascript:void()" type="button"
+                                            class="btn btn-warning btn-sm btn-circle button-update"
+                                            data-id="<%= pitch[i].id %>" data-name="<%= pitch[i].users.startupName %>"
+                                            data-isCurrated="<%= pitch[i].isCurrated %>">
+                                            <i class="fas fa-fw fa-edit"></i>
+                                        </a>
+
+                                        <!-- Button trigger modal -->
+                                        <!-- <button class="btn btn-danger btn-sm btn-circle" type="submit">
+                                            <i class="fas fa-fw fa-trash"></i>
+                                        </button> -->
+
+                                    </form>
+                                </td>
+                            </tr>
+                            <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

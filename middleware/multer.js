@@ -24,6 +24,22 @@ const uploadPitchdeck = multer({
     checkFileType(file, cb);
   }
 }).array("image", 12);
+
+//////////////////////////////////// Online PITCH /////////////////////////
+const storageOnlinePitch = multer.diskStorage({
+  destination: "public/image/onlinePitch/",
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+const upLoadOnlinePitch = multer({
+  storage: storageOnlinePitch,
+  limits: { fileSize: 2000000 }, // 2 MB
+  fileFilter: function (req, file, cb) {
+    checkFileType(file, cb);
+  }
+}).single("image");
+
 //////////////////////////////////// USER /////////////////////////////////
 const storageUser = multer.diskStorage({
   destination: "public/image/user/",
@@ -105,7 +121,7 @@ const uploadNews = multer({
   fileFilter: function (req, file, cb) {
     checkFileType(file, cb);
   }
-}).array("image",12);
+}).array("image", 12);
 
 // const uploadNewsHeadline = multer({
 //   storage: storageMultipleNews,
@@ -164,13 +180,13 @@ function checkFileType(file, cb) {
   }
 }
 
-module.exports = { 
-  uploadMultiple, 
-  uploadSlider, 
+module.exports = {
+  uploadMultiple,
+  uploadSlider,
   uploadNews,
-  // uploadNewsHeadline, 
-  uploadPitch, 
+  uploadPitch,
   uploadTeams,
   uploadUser,
-  uploadPitchdeck
+  uploadPitchdeck,
+  upLoadOnlinePitch
 };

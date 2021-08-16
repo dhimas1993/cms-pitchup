@@ -1,0 +1,59 @@
+<!-- Modal -->
+<div class="modal fade " id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Pitch</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="false">&times;</span>
+        </button>
+      </div>
+
+      <form action="/online-pitch/?_method=PUT" method="POST">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input required name='name' type="text" class="form-control name" placeholder="Enter Title Name" disabled>
+          </div>
+          <div class="form-group">
+            <label for="isCurrated">isCurrated</label>
+            <select name="isCurrated" class="custom-select isCurrated" id="isCurrated">
+              <option value="<%= pitch.isCurrated %>">Pilih</option>
+              <% for(let i=0; i < pitch.length; i++){ %>
+                <option value="<%= !pitch[i].isCurrated %>">
+                  <%= !pitch[i].isCurrated %>
+                </option>
+                <% } %>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="" name="id" class="id">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+<script>CKEDITOR.replace('description');</script>
+<script>
+  var button = document.getElementById("add-label");
+
+  button.addEventListener("click", function () {
+    var br = document.createElement('br');
+    document.getElementById("add-input");
+    var input1 = document.createElement('input');
+    input1.setAttribute('id', 'label');
+    input1.setAttribute('class', 'form-control');
+    input1.setAttribute('type', 'text');
+    input1.setAttribute('name', 'label');
+    input1.setAttribute('placeholder', 'Enter Label');
+    document.getElementById("add-input").appendChild(input1);
+    document.getElementById("add-input").appendChild(br);
+  });
+</script>
